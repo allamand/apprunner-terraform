@@ -7,6 +7,9 @@ on:
 jobs:
   terraform-destroy:
     name: Destroy
+    permissions:
+      id-token: write
+      contents: read
     runs-on: ubuntu-latest
     env:
       KEY_PREFIX_NAME: ${{ github.event.repository.name }}
@@ -28,7 +31,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-duration-seconds: 900 
+          role-duration-seconds: 900
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Terraform Init
