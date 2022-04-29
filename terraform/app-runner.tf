@@ -4,7 +4,7 @@ resource "aws_apprunner_connection" "example" {
   provider_type   = "GITHUB"
 
   tags = {
-    Name = "example-apprunner-connection"
+    Name = "review-apprunner-connection"
   }
 }
 
@@ -34,6 +34,13 @@ resource "aws_apprunner_service" "reviewapps" {
       }
     }
   }
+
+  # network_configuration {
+  #   egress_configuration {
+  #     egress_type       = "VPC"
+  #     vpc_connector_arn = aws_apprunner_vpc_connector.connector.arn
+  #   }
+  # }
  
   tags = {
     Name = "reviewapps-apprunner-service"
