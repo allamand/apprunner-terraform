@@ -1,12 +1,13 @@
 
-resource "aws_apprunner_connection" "voting" {
-  connection_name = "voting"
-  provider_type   = "GITHUB"
+# We just need to create once
+# resource "aws_apprunner_connection" "voting" {
+#   connection_name = "voting"
+#   provider_type   = "GITHUB"
 
-  tags = {
-    Name = "review-apprunner-connection"
-  }
-}
+#   tags = {
+#     Name = "review-apprunner-connection"
+#   }
+#}
 
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apprunner_service
 resource "aws_apprunner_service" "reviewapps" {
@@ -15,7 +16,8 @@ resource "aws_apprunner_service" "reviewapps" {
   source_configuration {
     authentication_configuration {
       # need to create mnually to get it here
-      connection_arn = aws_apprunner_connection.voting.arn
+      #connection_arn = aws_apprunner_connection.voting.arn
+      connection_arn = "arn:aws:apprunner:eu-west-1:382076407153:connection/voting/c481aa8cc6794c9a9cc99c488f5ac7f8"
       #access_role_arn = 
     }
     code_repository {
