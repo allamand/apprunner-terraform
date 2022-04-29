@@ -1,6 +1,6 @@
 
-resource "aws_apprunner_connection" "example" {
-  connection_name = "example"
+resource "aws_apprunner_connection" "voting" {
+  connection_name = "voting"
   provider_type   = "GITHUB"
 
   tags = {
@@ -15,24 +15,43 @@ resource "aws_apprunner_service" "reviewapps" {
   source_configuration {
     authentication_configuration {
       # need to create mnually to get it here
-      connection_arn = aws_apprunner_connection.example.arn
+      connection_arn = aws_apprunner_connection.voting.arn
+      #access_role_arn = 
     }
     code_repository {
       code_configuration {
         code_configuration_values {
-          build_command = "npm install"
+          #build_command = "npm install"
+          build_command = "pip install -r requirements.txt"
           port          = var.port
-          runtime       = "NODEJS_12"
-          start_command = "npm start"
+          #runtime       = "NODEJS_12"
+          runtime = "PYTHON_3"
+          runtime_environment_variables = {
+            "DDB_AWS_REGION" = "eu-west-1"
+          }
+          #start_command = "npm start"
+          start_command = "python app.py"
         }
-        configuration_source = "API"
+        configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
       }
-      repository_url = "https://github.com/allamand/random-password-generator"
+      #repository_url = "https://github.com/allamand/random-password-generator"
+      repository_url = "https://github.com/allamand/votingapp"
       source_code_version {
         type  = "BRANCH"
         value = var.branch
       }
     }
+    # image_repository {
+    #   image_configuration {
+    #       port          = var.port
+    #       runtime_environment_variables = {
+    #         "key" = "value"
+    #       }
+    #       start_command = "npm start"        
+    #   }
+    #   image_identifier = "name"
+    #   image_repository_type = "ECR"
+    # }
   }
 
   # network_configuration {
