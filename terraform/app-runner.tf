@@ -24,7 +24,7 @@ resource "aws_apprunner_service" "reviewapps" {
       code_configuration {
         code_configuration_values {
           #build_command = "npm install"
-          build_command = "pip install -r requirements.txt"
+          build_command = "cd votingapp && pip install -r requirements.txt"
           port          = var.port
           #runtime       = "NODEJS_12"
           runtime = "PYTHON_3"
@@ -32,12 +32,13 @@ resource "aws_apprunner_service" "reviewapps" {
             "DDB_AWS_REGION" = "eu-west-1"
           }
           #start_command = "npm start"
-          start_command = "python app.py"
+          start_command = "cd votingapp && python app.py"
         }
         configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
       }
       #repository_url = "https://github.com/allamand/random-password-generator"
-      repository_url = "https://github.com/allamand/votingapp"
+      #repository_url = "https://github.com/allamand/votingapp"
+      repository_url = "https://github.com/allamand/apprunner-terraform"
       source_code_version {
         type  = "BRANCH"
         value = var.branch
