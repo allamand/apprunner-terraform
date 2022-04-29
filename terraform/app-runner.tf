@@ -37,7 +37,7 @@ resource "aws_apprunner_service" "reviewapps" {
         configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
       }
       #repository_url = "https://github.com/allamand/random-password-generator"
-      repository_url = "https://github.com/allamand/votingapp/tree"
+      repository_url = "https://github.com/allamand/votingapp"
       source_code_version {
         type  = "BRANCH"
         value = var.branch
