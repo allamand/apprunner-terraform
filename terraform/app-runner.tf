@@ -24,7 +24,7 @@ resource "aws_apprunner_service" "reviewapps" {
       code_configuration {
         code_configuration_values {
           #build_command = "npm install"
-          build_command = "pip install -r requirements.txt"
+          build_command = "cd votingapp && pip install -r requirements.txt"
           port          = var.port
           #runtime       = "NODEJS_12"
           runtime = "PYTHON_3"

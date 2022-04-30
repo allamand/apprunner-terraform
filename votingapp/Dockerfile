@@ -4,6 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
+RUN ls -la
 RUN pip install -r requirements.txt
 
 RUN groupadd -r restaurantgroup && useradd -r -g restaurantgroup restaurantuser
