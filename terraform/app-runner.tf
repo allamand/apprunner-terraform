@@ -24,7 +24,8 @@ resource "aws_apprunner_service" "reviewapps" {
       code_configuration {
         code_configuration_values {
           #build_command = "npm install"
-          build_command = "cd votingapp && pip install -r requirements.txt"
+          build_command = ["cd votingapp && pip install -r requirements.txt",
+          "groupadd -r restaurantgroup && useradd -r -g restaurantgroup restaurantuser"]
           port          = var.port
           #runtime       = "NODEJS_12"
           runtime = "PYTHON_3"
@@ -32,7 +33,7 @@ resource "aws_apprunner_service" "reviewapps" {
             "DDB_AWS_REGION" = "eu-west-1"
           }
           #start_command = "npm start"
-          start_command = "cd votingapp && python app.py"
+          start_command = "python votingapp/app.py"
         }
         configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
       }
