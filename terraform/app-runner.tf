@@ -32,7 +32,8 @@ resource "aws_apprunner_service" "reviewapps" {
             "DDB_AWS_REGION" = "eu-west-1"
           }
           #start_command = "npm start"
-          start_command = "python votingapp/app.py"
+          start_command = "cd votingapp && python votingapp/app.py"
+          #start_command = "python votingapp/app.py"
         }
         configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
       }
