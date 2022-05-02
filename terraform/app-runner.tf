@@ -39,7 +39,7 @@ resource "aws_apprunner_service" "reviewapps" {
       }
       #repository_url = "https://github.com/allamand/random-password-generator"
       #repository_url = "https://github.com/allamand/votingapp"
-      repository_url = "https://github.com/allamand/apprunner-terraform"
+      repository_url = "https://github.com/allamand/apprunner-terraform/terraform"
       source_code_version {
         type  = "BRANCH"
         value = var.branch
