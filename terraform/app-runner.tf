@@ -65,6 +65,12 @@ resource "aws_apprunner_service" "reviewapps" {
   #   }
   # }
  
+instance_configuration {
+  cpu = "1 vCPU"
+  memory = "2 GB"
+  instance_role_arn = "arn:aws:iam::382076407153:role/votingapp-role"
+}
+
   tags = {
     Name = "reviewapps-apprunner-service"
   }
