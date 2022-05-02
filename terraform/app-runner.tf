@@ -22,21 +22,21 @@ resource "aws_apprunner_service" "reviewapps" {
     }
     code_repository {
       code_configuration {
-        # code_configuration_values {
-        #   #build_command = "npm install"
-        #   build_command = "cd votingapp && pip install -r requirements.txt"
-        #   port          = var.port
-        #   #runtime       = "NODEJS_12"
-        #   runtime = "PYTHON_3"
-        #   runtime_environment_variables = {
-        #     "DDB_AWS_REGION" = "eu-west-1"
-        #   }
-        #   #start_command = "npm start"
-        #   #start_command = "cd votingapp && python votingapp/app.py"
-        #   start_command = "python votingapp/app.py"
-        # }
-        # configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
-        configuration_source = "REPOSITORY"
+        code_configuration_values {
+          #build_command = "npm install"
+          build_command = "cd votingapp && pip install -r requirements.txt"
+          port          = var.port
+          #runtime       = "NODEJS_12"
+          runtime = "PYTHON_3"
+          runtime_environment_variables = {
+            "DDB_AWS_REGION" = "eu-west-1"
+          }
+          #start_command = "npm start"
+          #start_command = "cd votingapp && python votingapp/app.py"
+          start_command = "python votingapp/app.py"
+        }
+        configuration_source = "API" # or REPOSITORY to use apprunner.yaml configuration file
+        #configuration_source = "REPOSITORY"
       }
       #repository_url = "https://github.com/allamand/random-password-generator"
       #repository_url = "https://github.com/allamand/votingapp"
